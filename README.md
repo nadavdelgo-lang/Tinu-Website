@@ -29,6 +29,8 @@ npx serve .
 All copy lives in `index.html`. Search for these anchors to change them:
 
 - Hero headline and sub-line: `<h1`
-- Availability windows: `id="availability"`
+- Availability windows: `id="availability"`. Each dated row carries `data-from`, `data-to`, and `data-when`. The Status column and the hero readout line are computed from those dates, so update the dates together with the window text.
 - Princeton research link: `id="research"`
-- Contact emails and the deployment mail link: `id="contact"`
+- Contact emails: `id="contact"`
+- Deployment mail link: search for `mailto:Ken@tinu.ai,Nadav@tinu.ai`. It appears 5 times (header, mobile menu, hero, availability, contact). The printed subject sits after "Subject, pre-filled".
+- Site addresses and window dates are also in the hero readout panel: `class="readout"`.
