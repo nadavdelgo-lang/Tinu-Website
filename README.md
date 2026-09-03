@@ -5,7 +5,8 @@ Stealth one-page site for Tinu.ai. Static HTML, no build step.
 ## Files
 
 - `index.html`: the whole site. CSS and JavaScript are inline.
-- `logo.svg`: standalone logo mark and wordmark.
+- `logo.svg`: logo mark and wordmark, light version for dark backgrounds.
+- `logo-black.svg`: the same logo for light backgrounds.
 - `.nojekyll`: tells GitHub Pages to serve the files as they are.
 
 ## Run locally
