@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tinu</title>
+  <meta name="description" content="Tinu delivers dated access to GB300 and Vera Rubin compute. Hardware, orchestration and financing from one counterparty, in the US, UK and Israel.">
+  <meta name="theme-color" content="#05070a">
+  <meta property="og:title" content="Tinu">
+  <meta property="og:description" content="Vera Rubin compute, with a date on it. Hardware, orchestration and financing from one counterparty.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tinu.ai/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305070a'/%3E%3Cpath d='M8 10h16v3.2h-6.4V24h-3.2V13.2H8z' fill='%2338f0d8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="modulepreload" href="vendor/three.module.min.js">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.min.js" } }
+  </script>
+</head>
+<body>
+
+  <header class="nav">
+    <a class="nav__brand" href="#top" aria-label="Tinu home">tinu</a>
+    <a class="nav__link" href="mailto:ken@tinu.ai,nadav.d@tinu.ai?subject=Deployment%20inquiry%3A%20B300%20%2F%20GB300%20%2F%20Vera%20Rubin">Contact</a>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <p class="hero__eyebrow">GB300 &middot; Vera Rubin &middot; B300</p>
+      <h1 class="hero__title">Vera Rubin compute,<br>with a date on it.</h1>
+      <p class="hero__sub">
+        Tinu owns the hardware, the orchestration layer and the financing.
+        One counterparty for GB300 and Vera Rubin capacity in the US, UK and Israel.
+      </p>
+      <a class="hero__cue" href="#build" aria-label="Scroll to see the rack build">
+        <span>See how we build</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <section id="build" class="build" aria-label="Liquid-cooled Vera Rubin rack, assembled piece by piece">
+      <div class="build__sticky">
+        <canvas id="scene" class="build__canvas" aria-hidden="true"></canvas>
+        <div class="build__fallback" aria-hidden="true"></div>
+
+        <ol class="captions">
+          <li class="caption" data-stage="0">
+            <span class="caption__index">01</span>
+            <h2 class="caption__title">Frame</h2>
+            <p class="caption__text">A rack-scale system starts as a 48U chassis, rails and rear busbar. Every position is planned before the first tray arrives.</p>
+          </li>
+          <li class="caption" data-stage="1">
+            <span class="caption__index">02</span>
+            <h2 class="caption__title">Power and coolant distribution</h2>
+            <p class="caption__text">A DC busbar and two liquid manifolds run the full height of the rack. Supply on one side, return on the other.</p>
+          </li>
+          <li class="caption" data-stage="2">
+            <span class="caption__index">03</span>
+            <h2 class="caption__title">Compute trays</h2>
+            <p class="caption__text">Eighteen compute trays slide in on rails. Each carries Vera CPUs and Rubin GPUs on a shared cold plate.</p>
+          </li>
+          <li class="caption" data-stage="3">
+            <span class="caption__index">04</span>
+            <h2 class="caption__title">NVLink switch fabric</h2>
+            <p class="caption__text">Nine switch trays in the middle of the rack join every GPU into one memory domain. No optics, no top-of-rack hop.</p>
+          </li>
+          <li class="caption" data-stage="4">
+            <span class="caption__index">05</span>
+            <h2 class="caption__title">Liquid cooling loops</h2>
+            <p class="caption__text">Each tray connects to the manifolds with quick-disconnect couplings. Direct-to-chip liquid removes the heat that air cannot.</p>
+          </li>
+          <li class="caption" data-stage="5">
+            <span class="caption__index">06</span>
+            <h2 class="caption__title">Coolant distribution unit</h2>
+            <p class="caption__text">The CDU pumps coolant through the loops and rejects heat to the facility water. Flow starts before the first workload does.</p>
+          </li>
+          <li class="caption" data-stage="6">
+            <span class="caption__index">07</span>
+            <h2 class="caption__title">Power on. Then scale out.</h2>
+            <p class="caption__text">One rack becomes a row. Our orchestration layer runs on top of the metal from the first day of deployment.</p>
+          </li>
+        </ol>
+
+        <div class="build__progress" aria-hidden="true"><i></i></div>
+      </div>
+    </section>
+
+    <section class="block" id="work">
+      <div class="block__inner">
+        <p class="block__eyebrow">Three ways to work with us</p>
+        <ul class="cards">
+          <li class="card">
+            <h2 class="card__title">Hardware</h2>
+            <p class="card__text">GB300 and Vera Rubin racks, and B300 nodes, sold direct. You own the metal.</p>
+          </li>
+          <li class="card">
+            <h2 class="card__title">Compute access</h2>
+            <p class="card__text">Proof-of-concept windows on GB300 and B300 in 2026, on a tested software stack. Vera Rubin to follow.</p>
+          </li>
+          <li class="card">
+            <h2 class="card__title">Project financing</h2>
+            <p class="card__text">Asset-backed capital for builds in the US, UK, Israel and Europe. No equity required.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block block--proof" id="proof">
+      <div class="block__inner">
+        <p class="block__eyebrow">Proof</p>
+        <ul class="proof">
+          <li class="proof__item">
+            <h2 class="proof__title">Building datacenters for Princeton University</h2>
+            <p class="proof__text">A university-grade deployment, designed and delivered by Tinu.</p>
+          </li>
+          <li class="proof__item">
+            <h2 class="proof__title">Hardware ordered, coming online in 2026</h2>
+            <p class="proof__text">GB300 and Vera Rubin systems are on order. We offer dated access while the market waits in line.</p>
+          </li>
+          <li class="proof__item">
+            <h2 class="proof__title">Orchestration research at Princeton</h2>
+            <p class="proof__text">
+              Our orchestration approach is documented by Princeton Research Computing's Research Software Engineering group.
+              On the projects page, see the entry titled <em>Orchestrated Burst Compute for Research Workloads</em>.
+            </p>
+            <a class="link" href="https://researchcomputing.princeton.edu/services/research-software-engineering/rse-projects#OrchestratedBurst" target="_blank" rel="noopener">
+              View on Princeton Research Computing
+              <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block block--cta" id="deploy">
+      <div class="block__inner">
+        <h2 class="cta__title">Deploy B300, GB300 or Vera Rubin<br>in the US, UK or Israel.</h2>
+        <p class="cta__text">Tell us the size, the site and the date. We reply with what we can commit to.</p>
+        <a class="button" href="mailto:ken@tinu.ai,nadav.d@tinu.ai?subject=Deployment%20inquiry%3A%20B300%20%2F%20GB300%20%2F%20Vera%20Rubin">Email us about a deployment</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">tinu</span>
+      <ul class="footer__contacts">
+        <li><a href="mailto:ken@tinu.ai">ken@tinu.ai</a></li>
+        <li><a href="mailto:nadav.d@tinu.ai">nadav.d@tinu.ai</a></li>
+      </ul>
+      <span class="footer__copy">&copy; 2026 Tinu</span>
+    </div>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
