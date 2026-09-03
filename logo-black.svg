@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122 32" width="244" height="64" role="img" aria-labelledby="t">
+  <title id="t">Tinu</title>
+  <!-- Tinu.ai logo. Dark version for light backgrounds. Mark: bracket frame + T with an amber cap. Wordmark: Archivo Expanded, converted to paths. -->
+  <path d="M1.5 9V1.5h7.5M23 1.5h7.5V9M30.5 23v7.5H23M9 30.5H1.5V23" fill="none" stroke="#07090C" stroke-opacity=".55" stroke-width="1.5"/>
+  <rect x="8" y="9" width="13" height="4" fill="#07090C"/>
+  <rect x="21" y="9" width="3" height="4" fill="#F2A93B"/>
+  <rect x="14" y="13" width="4" height="12" fill="#07090C"/>
+  <g transform="translate(43 6.5) scale(0.68)" fill="#07090C"><path d="M13.45 28V5.62H1.05V-0.04H32.4V5.62H19.99V28Z M35.88 28V-0.04H42.42V28Z M48.73 28V-0.04H54.83L70.05 14.43Q70.55 14.86 71.26 15.6Q71.97 16.34 72.74 17.13Q73.51 17.91 74.07 18.54H74.4Q74.36 17.67 74.31 16.41Q74.25 15.16 74.25 14.33V-0.04H80.52V28H74.54L59.35 13.44Q58.27 12.41 57.08 11.16Q55.9 9.91 55.18 9.16H54.89Q54.92 9.69 54.96 10.99Q55 12.29 55 13.95V28Z M102.32 28.49Q97.01 28.49 93.53 26.86Q90.05 25.23 88.34 22.22Q86.63 19.21 86.63 15.09V-0.04H93.17V14.79Q93.17 18.78 95.55 20.96Q97.93 23.15 102.32 23.15Q106.72 23.15 109.1 20.96Q111.47 18.78 111.47 14.79V-0.04H118.02V15.09Q118.02 19.21 116.31 22.22Q114.6 25.23 111.13 26.86Q107.67 28.49 102.32 28.49Z"/></g>
+</svg>
