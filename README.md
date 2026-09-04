@@ -43,6 +43,8 @@ To change how it behaves, edit these values near the top of the script:
 All copy is in the `<main>` block of `index.html`.
 
 - Headline and sub-line: `<h1>` and `.sub`
+- The systems line that heads all three services: `.systems`. Naming the
+  hardware once here keeps it out of the three descriptions below.
 - The three services: `.svcs`
 - Contact: search for `mailto:`. One address list serves all three links, on
   the logo, the main button, and the footer button. It opens an email to
