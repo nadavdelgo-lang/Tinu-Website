@@ -43,6 +43,7 @@ To change how it behaves, edit these values near the top of the script:
 All copy is in the `<main>` block of `index.html`.
 
 - Headline and sub-line: `<h1>` and `.sub`
-- The three facts: `.facts`
-- Contact emails: search for `mailto:`. The deployment link appears twice, on
-  the logo and on the button. The two personal addresses are in the footer.
+- The three services: `.svcs`
+- Contact: search for `mailto:`. One address list serves all three links, on
+  the logo, the main button, and the footer button. It opens an email to
+  Ken and Nadav with the subject filled in. No address is printed on the page.

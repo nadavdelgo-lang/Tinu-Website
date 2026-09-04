@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tinu.ai</title>
-<meta name="description" content="GB300 and Vera Rubin, on a date we can name. Frontier GPU capacity, ordered and coming online, with our own orchestration stack on top.">
+<meta name="description" content="Next generation GPUs, on a date we can name. Research capacity at Princeton, GPU systems on prem, and compute by the token on our AI cloud.">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#071411">
 <meta property="og:title" content="Tinu.ai">
-<meta property="og:description" content="GB300 and Vera Rubin, on a date we can name.">
+<meta property="og:description" content="Next generation GPUs, on a date we can name.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23204E4C'/%3E%3Cg fill='%235A7AE0'%3E%3Cpath d='M14.2 27.5h3.6l-.5-8.2h-2.6z'/%3E%3Cpath d='M12.2 27.5h7.6c-.4-1.6-2-2.4-3.8-2.4s-3.4.8-3.8 2.4z'/%3E%3Cpath d='M16.4 19.9l-3.1-3.6 1.7-1.5 3 3.4z'/%3E%3Cpath d='M16.2 19.6l3.4-3.3 1.6 1.7-3.3 3.1z'/%3E%3C/g%3E%3Ccircle cx='11' cy='9' r='3.1' fill='none' stroke='%23E1483B' stroke-width='1.8'/%3E%3Ccircle cx='17.4' cy='7.4' r='3.6' fill='none' stroke='%239ED139' stroke-width='2'/%3E%3Ccircle cx='22.6' cy='11.4' r='2.6' fill='none' stroke='%232E74D0' stroke-width='1.7'/%3E%3Ccircle cx='10.4' cy='15.2' r='2.6' fill='none' stroke='%23DE3389' stroke-width='1.7'/%3E%3Ccircle cx='16.8' cy='13.9' r='2.4' fill='none' stroke='%23F0B93E' stroke-width='1.6'/%3E%3C/svg%3E">
 <style>
@@ -62,12 +62,13 @@ h1{font-weight:500;font-size:clamp(2.35rem,6.2vw,5.1rem);line-height:1.02;letter
 h1 .hl{color:var(--lime)}
 .sub{margin-top:clamp(20px,2.6vw,30px);font-size:clamp(1.02rem,1.55vw,1.35rem);line-height:1.5;
   color:var(--fg-2);max-width:46ch}
-.facts{margin-top:clamp(26px,3.4vw,42px);display:flex;flex-wrap:wrap;gap:10px 12px;padding:0;list-style:none}
-.facts li{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border:1px solid var(--line);
-  border-radius:999px;background:rgba(32,78,76,.28);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-2);white-space:nowrap}
-.facts b{color:var(--fg);font-weight:500}
-.facts li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--dot,var(--lime));flex:none}
+.svcs{margin-top:clamp(26px,3.6vw,46px);padding:0;list-style:none;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,34px);max-width:940px}
+.svcs li{border-top:1px solid var(--line-2);padding-top:14px}
+.svcs .k{display:flex;align-items:center;gap:9px;font:500 11px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg)}
+.svcs .k::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--dot);flex:none}
+.svcs .v{margin-top:10px;font-size:.95rem;line-height:1.5;color:var(--fg-2);max-width:30ch}
 
 .act{margin-top:clamp(32px,4vw,48px);display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px}
 .cta{display:inline-flex;align-items:center;gap:14px;min-height:58px;padding:14px 28px;border-radius:999px;
@@ -82,24 +83,30 @@ h1 .hl{color:var(--lime)}
 
 footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 28px;
   padding-top:clamp(16px,2vw,22px);border-top:1px solid var(--line)}
-.mails{display:flex;flex-wrap:wrap;gap:10px 26px}
-.mails a{font:500 13.5px/1 var(--mono);letter-spacing:.01em;color:var(--fg-2);padding:8px 0;
-  border-bottom:1px solid transparent;transition:color .2s var(--ease),border-color .2s var(--ease)}
-.mails a:hover{color:var(--fg);border-bottom-color:var(--lime)}
-.meta{display:flex;align-items:center;gap:22px}
-.meta span{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3)}
+.rights{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3)}
+.meta{display:flex;align-items:center;gap:clamp(16px,2.4vw,26px)}
+.cta-sm{min-height:42px;padding:10px 20px;font-size:.92rem}
+.cta-sm svg{width:13px;height:13px}
 .motion{display:none;align-items:center;gap:8px;font:500 10.5px/1 var(--mono);letter-spacing:.14em;
   text-transform:uppercase;color:var(--fg-3);padding:8px 0;transition:color .2s var(--ease)}
 .motion::before{content:"";width:7px;height:7px;border:1px solid currentColor;border-radius:1px}
 .motion:hover{color:var(--fg)}
 .js .motion{display:inline-flex}
 
+@media (max-width:900px){
+  .svcs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svcs li:last-child{grid-column:1/-1}
+}
 @media (max-width:720px){
-  .stage{gap:26px}
+  .stage{gap:24px}
   h1{font-size:clamp(2.1rem,8.6vw,3rem);max-width:none}
   .sub{max-width:none}
-  .cta{width:100%;justify-content:space-between}
-  footer{flex-direction:column;align-items:flex-start;gap:12px}
+  .svcs{grid-template-columns:minmax(0,1fr);gap:16px}
+  .svcs li:last-child{grid-column:auto}
+  .svcs .v{max-width:none}
+  main > .act .cta{width:100%;justify-content:space-between}
+  footer{flex-direction:row;align-items:center;gap:12px}
+  .cta-sm{display:none}
   .hint{display:none!important}
 }
 @media (prefers-reduced-motion:reduce){
@@ -141,28 +148,36 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
   </header>
 
   <main>
-    <h1>GB300 and Vera Rubin, <span class="hl">on a date we can name.</span></h1>
-    <p class="sub">Frontier GPU capacity, ordered and coming online, with our own orchestration stack on top.</p>
-    <ul class="facts">
-      <li style="--dot:#9ED139"><b>$200M</b> ordered</li>
-      <li style="--dot:#46B7E0">Datacenters for <b>Princeton</b></li>
-      <li style="--dot:#F0B93E"><b>US</b> · <b>UK</b> · <b>Israel</b></li>
+    <h1>Next generation GPUs, <span class="hl">on a date we can name.</span></h1>
+    <p class="sub">Frontier capacity, ordered and coming online. Three ways to run it.</p>
+    <ul class="svcs">
+      <li style="--dot:#9ED139">
+        <p class="k">Princeton DC</p>
+        <p class="v">Research-grade capacity for heavy scientific workloads, in the datacenters we build for Princeton University.</p>
+      </li>
+      <li style="--dot:#46B7E0">
+        <p class="k">GPU on prem</p>
+        <p class="v">Next generation GPU systems delivered, installed, and run inside your own datacenter.</p>
+      </li>
+      <li style="--dot:#F0B93E">
+        <p class="k">AI cloud</p>
+        <p class="v">Compute sold by the token on our cloud, on our own orchestration stack.</p>
+      </li>
     </ul>
     <div class="act">
       <a class="cta" href="mailto:Ken@tinu.ai,Nadav.d@tinu.ai?subject=B300%2FGB300%2FVera%20Rubin%20deployment%20(US%2FUK%2FIsrael)">Request a deployment
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <span class="note">B300 · GB300 · Vera Rubin</span>
+      <span class="note">US · UK · Israel</span>
     </div>
   </main>
 
   <footer>
-    <div class="mails">
-      <a href="mailto:Ken@tinu.ai">Ken@tinu.ai</a>
-      <a href="mailto:Nadav.d@tinu.ai">Nadav.d@tinu.ai</a>
-    </div>
+    <span class="rights">© 2026 Tinu.ai</span>
     <div class="meta">
-      <span>© 2026 Tinu.ai</span>
+      <a class="cta cta-sm" href="mailto:Ken@tinu.ai,Nadav.d@tinu.ai?subject=B300%2FGB300%2FVera%20Rubin%20deployment%20(US%2FUK%2FIsrael)">Talk to us
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
       <button class="motion" id="motion" type="button">Pause motion</button>
     </div>
   </footer>
