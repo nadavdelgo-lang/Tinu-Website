@@ -1,12 +1,13 @@
 # Tinu.ai website
 
-Stealth one-page site for Tinu.ai. Static HTML, no build step.
+One page. Static HTML, no build step, no network requests.
 
 ## Files
 
-- `index.html`: the whole site. CSS and JavaScript are inline.
-- `logo.svg`: logo mark and wordmark, light version for dark backgrounds.
-- `logo-black.svg`: the same logo for light backgrounds.
+- `index.html`: the whole site. CSS, JavaScript, fonts, and logo are inline.
+- `logo.svg`: logo for dark backgrounds.
+- `logo-light.svg`: logo for light backgrounds.
+- `logo-mark.svg`: the tree mark on its own.
 - `.nojekyll`: tells GitHub Pages to serve the files as they are.
 
 ## Run locally
@@ -24,13 +25,24 @@ npx serve .
 3. Select the `main` branch and the `/ (root)` folder. Save.
 4. Add a `CNAME` file with `tinu.ai` when you point the domain here.
 
+## The field
+
+The background is a canvas grid of compute cells. Work flows through it on its
+own. A click, a tap, or a drag dispatches a kernel and the cells light up in the
+logo colours. Visitors who set "reduce motion" get one still frame, and everyone
+gets a Pause motion control in the footer.
+
+To change how it behaves, edit these values near the top of the script:
+
+- `PAL`: the eight logo colours the cells use.
+- `PITCH`, `CELL`: grid spacing and cell size.
+- `nextAuto`: seconds between the dispatches the page fires by itself.
+
 ## Edit content
 
-All copy lives in `index.html`. Search for these anchors to change them:
+All copy is in the `<main>` block of `index.html`.
 
-- Hero headline and sub-line: `<h1`
-- Availability windows: `id="availability"`. Each dated row carries `data-from`, `data-to`, and `data-when`. The Status column and the hero readout line are computed from those dates, so update the dates together with the window text.
-- Princeton research link: `id="research"`
-- Contact emails: `id="contact"`
-- Deployment mail link: search for `mailto:Ken@tinu.ai,Nadav@tinu.ai`. It appears 5 times (header, mobile menu, hero, availability, contact). The printed subject sits after "Subject, pre-filled".
-- Site addresses and window dates are also in the hero readout panel: `class="readout"`.
+- Headline and sub-line: `<h1>` and `.sub`
+- The three facts: `.facts`
+- Contact emails: search for `mailto:`. The deployment link appears twice, on
+  the logo and on the button. The two personal addresses are in the footer.
