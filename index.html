@@ -128,7 +128,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
 .readout dd{color:var(--fg);letter-spacing:.02em;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .readout dd.hi{color:var(--signal)}
 .readout dt:last-of-type,.readout dd:last-of-type{border-bottom:0}
-.readout .rf{margin-top:12px;padding-top:14px;border-top:1px solid var(--line-2);display:flex;align-items:flex-start;gap:10px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--fg-2)}
+.readout .rf{margin-top:12px;padding-top:14px;border-top:1px solid var(--line-2);display:flex;align-items:flex-start;gap:9px;font-size:10.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--fg-2)}
 
 .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);flex:none;display:inline-block;position:relative;vertical-align:middle}
 .dot.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--signal);opacity:0}
@@ -179,7 +179,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
 .figs .tag{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-height:2.8em}
 .figs .tag span{color:var(--signal);letter-spacing:.1em}
 .figs .num{margin:18px 0 12px;font:500 clamp(1.35rem,2.4vw,2.1rem)/1 var(--mono);font-stretch:90%;letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
-.figs p{color:var(--fg-2);font-size:.95rem;max-width:32ch}
+.figs p:not(.tag){color:var(--fg-2);font-size:.95rem;max-width:32ch}
 .figs .num{white-space:nowrap}
 
 /* why grid */
@@ -188,7 +188,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
 .why li:nth-child(-n+2){grid-column:span 3}
 .why .tag{display:flex;justify-content:space-between}
 .why .tag span{color:var(--signal);letter-spacing:.1em}
-.why p{color:var(--fg-2);font-size:.95rem}
+.why p:not(.tag){color:var(--fg-2);font-size:.95rem}
 
 /* research */
 .res{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px}
@@ -246,10 +246,16 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
   .sh,.body{grid-template-columns:160px minmax(0,1fr)}
   .ledger li{grid-template-columns:100px minmax(0,1fr) minmax(0,1.2fr)}
 }
-@media (max-width:1000px){
+@media (max-width:1200px){
   .hero .wrap{grid-template-columns:minmax(0,1fr)}
   .readout{max-width:640px}
   .res{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:1199px){
+  .sh .hd{align-items:start}
+  .sh .hd .lead{padding:.5em 0 0}
+}
+@media (max-width:1000px){
   .why li,.why li:nth-child(-n+2){grid-column:span 3}
   .why li:last-child{grid-column:span 6}
 }
@@ -299,7 +305,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
 @media (prefers-reduced-motion:reduce){
   .js .rv{opacity:1;transform:none;transition:none}
   .js .motion{display:none}
-  .dot.pulse::after{animation:none;display:none}
+  .js .dot.pulse::after{animation:none;display:none}
   .btn,.btn svg,.nav a,.hdr{transition:none}
 }
 </style>
@@ -355,7 +361,6 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
 <main id="main">
   <section class="hero" aria-labelledby="h1">
     <canvas id="field" aria-hidden="true"></canvas>
-    <button class="motion" id="motion" type="button" aria-pressed="false">Pause motion</button>
     <div class="wrap">
       <div>
         <p class="eyebrow tag">Tinu.ai <b>/</b> Frontier compute operator</p>
@@ -367,7 +372,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
         </div>
       </div>
       <aside class="readout brk" aria-label="Operator readout">
-        <div class="rh"><span class="tag"><i>[</i> Readout <i>]</i></span><span class="clock tag" id="clock" aria-hidden="true">UTC 00:00:00</span></div>
+        <div class="rh"><span class="tag"><i>[</i> Readout <i>]</i></span><span class="clock tag" id="clock" aria-hidden="true"></span></div>
         <dl>
           <dt>Purchase order</dt><dd class="hi">$200M</dd>
           <dt>Systems</dt><dd>GB300 / B300 / <span class="nw">Vera Rubin</span></dd>
@@ -379,6 +384,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
         <div class="rf"><span class="dot pulse" id="rf-dot" aria-hidden="true"></span><span id="rf-text">GB300 / B300 POC windows open, <span class="nw">Aug to Sep 2026</span></span></div>
       </aside>
     </div>
+    <button class="motion" id="motion" type="button">Pause motion</button>
   </section>
 
   <section class="sec" id="availability" aria-labelledby="h-avail">
@@ -576,7 +582,9 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
     var a=e.target.closest('a[href^="#"]');if(!a)return;
     var id=a.getAttribute('href').slice(1);var t=id?d.getElementById(id):null;if(!t)return;
     e.preventDefault();
-    t.scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'});
+    var behavior=reduce.matches?'auto':'smooth';
+    if(id==='top')scrollTo({top:0,behavior:behavior});
+    else t.scrollIntoView({behavior:behavior,block:'start'});
     history.pushState(null,'','#'+id);
     if(!t.hasAttribute('tabindex'))t.setAttribute('tabindex','-1');
     t.focus({preventScroll:true});
@@ -589,7 +597,7 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
   tick();setInterval(tick,1000);
 
   /* POC window status, computed from each row's dates (markup is the no-JS fallback) */
-  var now=Date.now(), open=[], next=null;
+  var now=Date.now(), open=[], sched=[];
   [].forEach.call(d.querySelectorAll('tr[data-from]'),function(tr){
     var s=Date.parse(tr.dataset.from+'T00:00:00Z'), e=Date.parse(tr.dataset.to+'T23:59:59Z');
     var k=now<s?'Scheduled':now>e?'Closed':'Open';
@@ -598,15 +606,17 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
     st.classList.toggle('on',k==='Open');
     dot.className='dot '+(k==='Open'?'pulse':k==='Scheduled'?'mid':'off');
     if(k==='Open')open.push(tr);
-    else if(k==='Scheduled'&&(!next||s<Date.parse(next.dataset.from+'T00:00:00Z')))next=tr;
+    else if(k==='Scheduled')sched.push(tr);
   });
   var rf=d.getElementById('rf-text'), rfDot=d.getElementById('rf-dot');
   function uniq(rows,key){var out=[];rows.forEach(function(r){var v=r.dataset[key];if(out.indexOf(v)<0)out.push(v)});return out}
   if(open.length){
     rf.innerHTML=uniq(open,'sys').join(' / ')+' POC '+(open.length>1?'windows':'window')+' open, <span class="nw">'+uniq(open,'when').join(' and ')+'</span>';
     rfDot.className='dot pulse';
-  }else if(next){
-    rf.innerHTML='Next POC window: '+next.dataset.sys+', <span class="nw">'+next.dataset.when+'</span>';
+  }else if(sched.length){
+    var first=sched.reduce(function(a,r){return a.dataset.from<r.dataset.from?a:r});
+    var nx=sched.filter(function(r){return r.dataset.from===first.dataset.from});
+    rf.innerHTML='Next POC '+(nx.length>1?'windows':'window')+': '+uniq(nx,'sys').join(' / ')+', <span class="nw">'+uniq(nx,'when').join(' and ')+'</span>';
     rfDot.className='dot mid';
   }else{
     rf.textContent='POC windows: ask by email';
@@ -666,18 +676,17 @@ h3{font-size:1.05rem;letter-spacing:-.01em;line-height:1.35}
   }
   function start(){if(!raf&&visible&&!hidden&&motionOK())raf=requestAnimationFrame(loop)}
   function stop(){if(raf){cancelAnimationFrame(raf);raf=0}}
-  function still(){size();frame(0)}
+  function still(){size();frame(last)}
   var mbtn=d.getElementById('motion');
   function applyMotion(){
     root.classList.toggle('paused',paused);
     mbtn.textContent=paused?'Play motion':'Pause motion';
-    mbtn.setAttribute('aria-pressed',paused?'true':'false');
     if(motionOK())start();else{stop();still()}
   }
   mbtn.addEventListener('click',function(){paused=!paused;try{localStorage.setItem('tinu-motion',paused?'paused':'on')}catch(e){}applyMotion()});
   size();
   applyMotion();
-  addEventListener('resize',function(){size();if(!motionOK())frame(0)});
+  addEventListener('resize',function(){size();if(!motionOK())frame(last)});
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){visible=es[0].isIntersecting;start()},{threshold:0}).observe(hero);
   }
