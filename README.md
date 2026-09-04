@@ -8,6 +8,10 @@ One page. Static HTML, no build step, no network requests.
 - `logo.svg`: logo for dark backgrounds.
 - `logo-light.svg`: logo for light backgrounds. This is the version the site uses.
 - `logo-mark.svg`: the tree mark on its own.
+
+The mark is the original artwork, traced from the supplied PNG into flat vector
+paths, one per brand colour, so it stays crisp at any size and needs no image
+file. The wordmark is Outfit, converted to paths.
 - `.nojekyll`: tells GitHub Pages to serve the files as they are.
 
 ## Run locally
