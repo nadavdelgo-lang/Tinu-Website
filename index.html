@@ -51,7 +51,7 @@ svg{display:block}
 .top{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:block}
 .brand svg{height:clamp(34px,4vw,46px);width:auto}
-.hint{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);
+.hint{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-2);
   display:none;align-items:center;gap:9px;white-space:nowrap}
 .hint::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);opacity:.85}
 .js .hint{display:inline-flex}
@@ -102,7 +102,7 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
 .cta-sm{min-height:42px;padding:10px 20px;font-size:.92rem}
 .cta-sm svg{width:13px;height:13px}
 .motion{display:none;align-items:center;gap:8px;font:500 10.5px/1 var(--mono);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--fg-3);padding:8px 0;transition:color .2s var(--ease)}
+  text-transform:uppercase;color:var(--fg-2);padding:8px 0;transition:color .2s var(--ease)}
 .motion::before{content:"";width:7px;height:7px;border:1px solid currentColor;border-radius:1px}
 .motion:hover{color:var(--fg)}
 .js .motion{display:inline-flex}
@@ -202,8 +202,8 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
      click dispatches a kernel and the cells light up in the logo colours. */
   var c=d.getElementById('field'), ctx=c.getContext('2d', {alpha:true});
   /* logo canopy colours, deepened so they hold their own on white */
-  var PAL=[[134,179,43],[155,190,49],[217,156,30],[208,106,34],[201,51,39],[196,31,114],[42,155,199],[31,92,181]];
-  var DEEP=PAL.map(function(c){return [Math.round(c[0]*.62),Math.round(c[1]*.62),Math.round(c[2]*.62)]});
+  var PAL=[[146,169,114],[160,179,122],[180,160,109],[160,123,94],[141,90,86],[138,85,115],[97,148,167],[71,101,138]];
+  var DEEP=PAL.map(function(c){return [Math.round(c[0]*.74),Math.round(c[1]*.74),Math.round(c[2]*.74)]});
   var PITCH=26, CELL=15, RAD=3;
   var W=0,H=0,dpr=1,cols=0,rows=0,cells=null,base=null,bctx=null,IDLE=1;
   var raf=0,last=0,t0=0,hidden=false,paused=false;
@@ -219,14 +219,16 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
     c.width=Math.round(W*dpr); c.height=Math.round(H*dpr);
     c.style.width=W+'px'; c.style.height=H+'px';
     PITCH = W<560 ? 22 : 26; CELL = PITCH-11;
-    IDLE = W<760 ? 0.42 : 1;   /* quiet at rest on a phone; a touch still lights it fully */
+    IDLE = W<760 ? 0.42 : 0.9;   /* quiet at rest on a phone; a touch still lights it fully */
     cols=Math.ceil(W/PITCH)+1; rows=Math.ceil(H/PITCH)+1;
     var n=cols*rows, i, j, k=0;
     cells=new Float32Array(n*2); var hue=new Uint8Array(n);
     for(j=0;j<rows;j++)for(i=0;i<cols;i++){
       var x=i*PITCH+PITCH/2, y=j*PITCH+PITCH/2;
       cells[k*2]=x; cells[k*2+1]=y;
-      hue[k]=((i*7 + j*13 + ((i*j)%5)*3) % PAL.length);
+      var hu=i*0.27, hv=j*0.31;
+      var hs=(Math.sin(hu)+Math.sin(hv*1.3+1.7)+Math.sin((hu+hv)*0.6+0.4))/3;
+      hue[k]=Math.max(0,Math.min(PAL.length-1,Math.floor((hs*0.5+0.5)*PAL.length)));
       k++;
     }
     cells.hue=hue; cells.n=n;
@@ -257,44 +259,44 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
       if(r.age>r.life) ripples.splice(i,1);
     }
     var nr=ripples.length;
-    for(i=0;i<nr;i++){ r=ripples[i]; r.R=r.age*r.speed; r.fade=1-r.age/r.life; }
+    for(i=0;i<nr;i++){ r=ripples[i]; r.R=r.age*r.speed; r.fade=(1-r.age/r.life)*r.g; }
 
     for(var k=0;k<n;k++){
       var x=cells[k*2], y=cells[k*2+1];
-      var w1=Math.sin(x*0.0096 - t*0.52 + y*0.0062);
-      var w2=Math.sin(x*0.0038 + t*0.29 - y*0.0104);
+      var w1=Math.sin(x*0.0096 - t*0.33 + y*0.0062);
+      var w2=Math.sin(x*0.0038 + t*0.18 - y*0.0104);
       var v=w1*0.62 + w2*0.38;
-      var a = v>0.60 ? (v-0.60)*2.5*0.9*IDLE : 0;
+      var a = v>0.66 ? (v-0.66)*2.5*0.82*IDLE : 0;
 
       if(hot>0.01){
         var dx=x-px, dy=y-py, d2=dx*dx+dy*dy;
-        if(d2<24000) a += (1-d2/24000)*0.62*hot;
+        if(d2<19000) a += (1-d2/19000)*0.38*hot;
       }
       for(i=0;i<nr;i++){
         r=ripples[i];
         var ex=x-r.x, ey=y-r.y, dd=Math.sqrt(ex*ex+ey*ey)-r.R;
-        if(dd>-38 && dd<38){
-          var g=1-Math.abs(dd)/38;
-          a += g*g*r.fade*1.7;
+        if(dd>-34 && dd<34){
+          var g=1-Math.abs(dd)/34;
+          a += g*g*r.fade*1.15;
         }
       }
       if(a<=0.045) continue;
       if(a>1) a=1;
       var p=PAL[hue[k]];
-      ctx.fillStyle='rgba('+p[0]+','+p[1]+','+p[2]+','+(Math.pow(a,0.72)*0.86).toFixed(3)+')';
+      ctx.fillStyle='rgba('+p[0]+','+p[1]+','+p[2]+','+(Math.pow(a,0.85)*0.66).toFixed(3)+')';
       rect(ctx,x,y,CELL);
-      if(a>0.62){
+      if(a>0.72){
         var q=DEEP[hue[k]];
-        ctx.fillStyle='rgba('+q[0]+','+q[1]+','+q[2]+','+((a-0.62)*1.6).toFixed(3)+')';
+        ctx.fillStyle='rgba('+q[0]+','+q[1]+','+q[2]+','+((a-0.72)*1.0).toFixed(3)+')';
         rect(ctx,x,y,CELL*0.46);
       }
     }
   }
 
-  function dispatch(x,y,strong){
+  function dispatch(x,y,strong,gain){
     if(ripples.length>13) ripples.shift();
-    ripples.push({x:x,y:y,t0:(performance.now()-t0)/1000,age:0,R:0,fade:1,
-      speed: strong?430:330, life: strong?1.5:1.25});
+    ripples.push({x:x,y:y,t0:(performance.now()-t0)/1000,age:0,R:0,fade:1,g:gain||1,
+      speed: strong?285:215, life: strong?2.5:2.1});
   }
 
   function frame(now){
@@ -304,8 +306,8 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
       var t=(now-t0)/1000;
       hot += ((px>-1e3?1:0)-hot)*0.08;
       if(t>nextAuto){ /* keep the field alive on its own */
-        dispatch(W*(0.15+0.7*Math.random()), H*(0.12+0.76*Math.random()), false);
-        nextAuto = t + 3.4 + Math.random()*2.6;
+        dispatch(W*(0.15+0.7*Math.random()), H*(0.12+0.76*Math.random()), false, 0.7);
+        nextAuto = t + 6.5 + Math.random()*4.0;
       }
       draw(now);
     }

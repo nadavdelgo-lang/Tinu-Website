@@ -292,21 +292,33 @@ Navy carries the most ink. It is the trunk and the branches.
 Eight colours, each derived from a logo colour by the rule above. Navy is the
 only mark colour not used in the field.
 
-| Logo | Field | As rendered on white |
-|---|---|---|
-| `#8DC63F` | `#86B32B` | 2.16:1 |
-| `#BED63F` | `#9BBE31` | 1.91:1 |
-| `#F2B825` | `#D99C1E` | 2.12:1 |
-| `#F2843C` | `#D06A22` | 3.01:1 |
-| `#E02B39` | `#C93327` | 4.27:1 |
-| `#DE1D8C` | `#C41F72` | 4.55:1 |
-| `#11A2DB` | `#2A9BC7` | 2.68:1 |
-| `#0E6BB5` | `#1F5CB5` | 4.77:1 |
+| Logo | Field | Solid | As rendered |
+|---|---|---|---|
+| `#8DC63F` | `#92A972` | 2.58:1 | 1.80:1 |
+| `#BED63F` | `#A0B37A` | 2.28:1 | 1.68:1 |
+| `#F2B825` | `#B4A06D` | 2.56:1 | 1.80:1 |
+| `#F2843C` | `#A07B5E` | 3.83:1 | 2.26:1 |
+| `#E02B39` | `#8D5A56` | 5.63:1 | 2.82:1 |
+| `#DE1D8C` | `#8A5573` | 5.79:1 | 2.86:1 |
+| `#11A2DB` | `#6194A7` | 3.33:1 | 2.10:1 |
+| `#0E6BB5` | `#47658A` | 6.01:1 | 2.91:1 |
 
-Quote these rendered ratios, not the ratios of the solid hex values. The canvas
-paints every cell at `pow(alpha, 0.72) * 0.86`, so the solid colour never
-appears on screen. Bright cell centres are each field colour multiplied by
-0.62.
+Quote the rendered ratios, not the solid ones. The canvas paints every cell at
+`pow(alpha, 0.85) * 0.66`, so the solid colour never appears on screen. Bright
+cell centres are each field colour multiplied by 0.74, and they appear only
+above alpha 0.72, at the heart of a dispatch.
+
+The chroma of each field colour is about half the chroma of its logo colour.
+That is the house derivation rule applied hard: the hue is held so the canopy
+stays recognisable, and the chroma is cut so the page stays quiet. Two colours
+carry an extra lightness nudge, because at half chroma the red and the magenta
+otherwise read as a bruise next to the ink.
+
+**Hue comes from place, not from chance.** Each cell takes its colour from a
+smooth function of its position, so neighbouring cells share a hue and the
+field reads as drifting colour regions about five cells across. Never assign
+hue per cell at random. A grid of unrelated colours reads as confetti, which is
+the one thing this field must not be.
 
 **The field is decorative.** It may never carry text, an icon, a border, a
 chart series, a status, or anything a reader has to interpret.
@@ -524,14 +536,25 @@ The website background is a canvas grid of compute cells.
 |---|---|
 | `PITCH` | 26 (grid spacing) |
 | `CELL` | 15 (cell size) |
-| `IDLE` | 1 on desktop, 0.42 below 760px |
-| Painted alpha | `pow(alpha, 0.72) * 0.86` |
+| `IDLE` | 0.9 on desktop, 0.42 below 760px |
+| Painted alpha | `pow(alpha, 0.85) * 0.66` |
+| Resting gate | cells light above wave 0.66 |
+| Pointer glow | 0.38 within a 138px radius |
+| Dispatch ring | 285px per second on a click, 215 on a drag |
+| Ring life | 2.5s on a click, 2.1s on a drag |
+| Ring band | 34px wide |
+| Self dispatch | every 6.5 to 10.5 seconds, at 0.7 strength |
 | Easing | `cubic-bezier(.2, .7, .2, 1)` |
 | Transitions | .2s, .25s, .3s |
 | Status pulse | 2.6s |
 
 A diagonal wave runs on its own. A click, a tap or a drag dispatches a kernel
 and the cells light in the field colours.
+
+The field is calm by design. It moves slowly, it never reaches full strength,
+and a dispatch reads as a swell rather than a flash. When the page fires by
+itself it does so at 0.7 strength, so an unattended page never looks like
+somebody is touching it.
 
 ### Rules
 
@@ -785,7 +808,6 @@ These are places the shipped files disagree with this document. Fix them.
 |---|---|---|
 | `--brand` declared, never used, duplicates `--acc` | `index.html` | Delete the token |
 | `--bg-2` declared, never used | `index.html` | Use it or delete it |
-| "Drag anywhere" and "Pause motion" measure 4.40:1 and 4.44:1 over the field, against a 4.5:1 requirement | `index.html`, `.hint` and `.motion` | Move both from `--fg-3` to `--fg-2` |
 | The status line reads "online by end of October" with no year | `index.html` and its meta description | Write "end of October 2026" |
 | No `og:image` and no `twitter:card` | `index.html` | Add both |
 | No 16px favicon and no SVG icon | `index.html` | Add both |
