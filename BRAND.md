@@ -58,10 +58,16 @@ copy as **tinu.ai**, lower case, with no protocol and no www.
 Never write TINU, never write Tinu.AI, never write Tinu ai. The possessive is
 Tinu's.
 
-The three services are written **GPU on prem**, **AI cloud**, and
-**Orchestration software**. Sentence case. They describe what is sold, so they
-are never title cased and never trademarked. Write them in sentence case in the
-source and let CSS apply the uppercase.
+The legal entity is **Tinu LLC**. Use it in copyright lines, contracts and fine
+print. Everywhere else the company is Tinu.
+
+**TinuOS** is the name of Tinu's own orchestration software. One word, capital T,
+capital OS, no space. Never TinuOs, never Tinu OS. It is a product name, so it
+keeps its capitals in running copy and is never lowercased by a label style.
+
+Hardware is written **Vera Rubin NVL72**, **GB300 NVL72** and **B300**. Write the
+platform name in full on every mention. Never abbreviate NVL72 and never write
+VR72.
 
 Open decision: record one pronunciation respelling and one sentence on what the
 name means. See section 14.
@@ -512,9 +518,13 @@ Four values, and only four.
 - `2px` for focus rings.
 - `1px` for the small square in the motion control.
 
-A card or a panel takes a **6px to 7px** radius on a print surface only. On
-screen, Tinu does not use cards. Separation comes from a hairline rule and
-white space.
+Two more radii carry panels. A card on a print surface takes **6px to 7px**. A
+card on screen takes **12px**, which is on the 4px scale. Use a screen card only
+where the content is a set of parallel offers a reader compares, such as the
+proof of concept windows. Everywhere else, separation comes from a hairline rule
+and white space.
+
+Field cell geometry is governed by section 7 and is exempt from this list.
 
 ### Rules
 
@@ -536,14 +546,15 @@ The website background is a canvas grid of compute cells.
 |---|---|
 | `PITCH` | 26 (grid spacing) |
 | `CELL` | 15 (cell size) |
-| `IDLE` | 0.9 on desktop, 0.42 below 760px |
-| Painted alpha | `pow(alpha, 0.85) * 0.66` |
+| Where | Behind the hero only. The rest of the page is plain. |
+| `IDLE` | 0.86 on desktop, 0.42 below 760px |
+| Painted alpha | `pow(alpha, 0.88) * 0.64` |
 | Resting gate | cells light above wave 0.66 |
-| Pointer glow | 0.38 within a 138px radius |
-| Dispatch ring | 285px per second on a click, 215 on a drag |
-| Ring life | 2.5s on a click, 2.1s on a drag |
+| Pointer glow | 0.36 within a 138px radius |
+| Dispatch ring | 240px per second on a click, 190 on a drag |
+| Ring life | 3.0s on a click, 2.5s on a drag |
 | Ring band | 34px wide |
-| Self dispatch | every 6.5 to 10.5 seconds, at 0.7 strength |
+| Self dispatch | every 7.5 to 12 seconds, at 0.62 strength |
 | Easing | `cubic-bezier(.2, .7, .2, 1)` |
 | Transitions | .2s, .25s, .3s |
 | Status pulse | 2.6s |
@@ -553,8 +564,12 @@ and the cells light in the field colours.
 
 The field is calm by design. It moves slowly, it never reaches full strength,
 and a dispatch reads as a swell rather than a flash. When the page fires by
-itself it does so at 0.7 strength, so an unattended page never looks like
+itself it does so at 0.62 strength, so an unattended page never looks like
 somebody is touching it.
+
+The field appears once, behind the hero, and nowhere else. It sleeps as soon as
+the hero scrolls out of view. Running it behind a whole scrolling page puts
+decoration under every word and costs battery for nothing.
 
 ### Rules
 
@@ -562,6 +577,14 @@ somebody is touching it.
 - `prefers-reduced-motion` gets one still frame, and the pause control reads
   "none" for it.
 - Pausing must redraw the frame that is already on screen, not a new one.
+  Hold the last drawn timestamp and redraw that, never a fixed moment.
+- The copy layer above the field must set `pointer-events:none`, with the links
+  and buttons inside it set back to `auto`. Without this the copy column
+  swallows every pointer event and the field is dead exactly where a visitor
+  reaches for it.
+- Measure the canvas against the hero with a `ResizeObserver`, not only a window
+  resize. Web fonts land after first paint and the hero reflows with no resize
+  event.
 - Below 760px the resting wave drops to 42 percent so copy stays clean. A touch
   still lights the grid at full strength.
 - In print the wave is frozen as a corner bloom in the top right plus a thin
@@ -630,8 +653,12 @@ promise.
 
 Use the serial comma. Write "the US, UK, and Israel".
 
-Headlines, buttons and mono labels take no terminal period. Body paragraphs
-take a period on every sentence.
+Headlines take a terminal full stop. Buttons and mono labels take none. Body
+paragraphs take a period on every sentence.
+
+A legal sentence is not a label. Never put `text-transform:uppercase` on a
+copyright line, an entity name, or anything else that must be read as written.
+Uppercase is for labels, tags and chrome only.
 
 Never set emphasis in italics. Emphasise with weight or with the teal, and only
 ever a load bearing fact: a figure, a date, an honest negative, an address.
@@ -808,8 +835,7 @@ These are places the shipped files disagree with this document. Fix them.
 |---|---|---|
 | `--brand` declared, never used, duplicates `--acc` | `index.html` | Delete the token |
 | `--bg-2` declared, never used | `index.html` | Use it or delete it |
-| The status line reads "online by end of October" with no year | `index.html` and its meta description | Write "end of October 2026" |
-| No `og:image` and no `twitter:card` | `index.html` | Add both |
+| No `og:image` | `index.html` | Add one. The other Open Graph tags are now present |
 | No 16px favicon and no SVG icon | `index.html` | Add both |
 | The OFL notices and licence text are not shipped, although both fonts are redistributed as base64 | repository | Add `OFL.txt` and a comment above the `@font-face` rules |
 | `logo.svg` on a dark ground renders the navy trunk, 37 percent of the mark's ink, as a near invisible silhouette | `logo.svg` | See section 14 |
@@ -832,5 +858,9 @@ Each needs an owner and a date.
 3. **Pronunciation.** Record one respelling and one sentence on what the name
    means, for the press kit and for every speaker bio.
 4. **Email signature, social images, and a slide template.** None exist.
-5. **Legal marks.** Decide whether Tinu is used with TM, and record the legal
-   entity name for contracts and fine print.
+5. **Legal marks.** Decide whether Tinu is used with TM. The entity name is
+   settled: Tinu LLC.
+6. **Privacy Policy and Terms of Service.** The live footer links to both. This
+   build has neither page, so the links are absent here.
+7. **The header menu.** The live site carries a hamburger menu. This build is one
+   page and carries a Contact link instead. Decide what the menu holds.
